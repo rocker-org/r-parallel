@@ -48,7 +48,6 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > library(future)
-> library(future)
 > plan(multiprocess)
 > Sys.getpid()
 [1] 1
