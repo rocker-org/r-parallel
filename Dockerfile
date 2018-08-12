@@ -18,7 +18,7 @@ RUN install.r snow
 RUN install.r doSNOW 
 
 ## MPI
-RUN install.r Rmpi
+## RUN install.r Rmpi
 
 ## Random Number Generation (RNG)
 RUN install.r rlecuyer
