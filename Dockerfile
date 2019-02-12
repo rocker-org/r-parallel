@@ -5,9 +5,10 @@ FROM rocker/r-base
 MAINTAINER "Henrik Bengtsson" henrikb@braju.com
 
 ## System libraries
-RUN apt-get update
-RUN apt-get install -y libopenmpi-dev  # Rmpi
-RUN apt-get install -y libzmq3-dev     # rzmq (via clustermq)
+RUN apt-get update \
+    && apt-get install -y \
+       libopenmpi-dev \
+       libzmq3-dev
 
 ## Legacy (snow is deprecated)
 RUN install.r snow
