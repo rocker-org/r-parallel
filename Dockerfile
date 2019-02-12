@@ -11,8 +11,7 @@ RUN apt-get update \
        libzmq3-dev
 
 ## Legacy (snow is deprecated)
-RUN install.r snow
-RUN install.r doSNOW 
+RUN install.r snow doSNOW 
 
 ## MPI
 ## RUN install.r Rmpi
@@ -21,10 +20,8 @@ RUN install.r doSNOW
 RUN install.r rlecuyer
 
 ## The foreach ecosystem
-RUN install.r foreach
-RUN install.r iterators
-RUN install.r doParallel
-RUN install.r doMC
+RUN install.r foreach iterators
+RUN install.r doParallel doMC doRNG
 
 ## The future ecosystem
 RUN install.r future
@@ -36,4 +33,3 @@ RUN install.r furrr
 RUN install.r BatchJobs future.BatchJobs   ## heavy set of dependencies
 RUN install.r batchtools future.batchtools ## heavy set of dependencies
 RUN install.r clustermq                    ## heavy set of dependencies
-RUN install.r doRNG                        ## heavy set of dependencies
