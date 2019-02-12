@@ -8,8 +8,7 @@ A Docker container with a base [R] installation together with several parallel/a
 To build the container locally, do:
 
 ```sh
-$ make build
-docker build . --tag henrikbengtsson/r-base-parallel
+$ docker build . --tag henrikbengtsson/r-base-parallel
 Sending build context to Docker daemon  56.32kB
 Step 1/17 : FROM rocker/r-base
 latest: Pulling from rocker/r-base
@@ -20,14 +19,26 @@ bbf1b2b5c36c: Pull complete
 8cdff7e970c4: Pull complete 
 e81d795a3e2b: Downloading ...
 [...]
+
 $ 
 ```
+
+To pull it down from Docker Hub, do:
+
+```sh
+$ docker pull henrikbengtsson/r-base-parallel
+Using default tag: latest
+latest: Pulling from henrikbengtsson/r-base-parallel
+[...]
+
+$ 
+```
+
 
 To launch R in the container, do:
 
 ```sh
-$ make run
-docker run -ti henrikbengtsson/r-base-parallel
+$ docker run -ti henrikbengtsson/r-base-parallel
 
 R version 3.5.1 (2018-07-02) -- "Feather Spray"
 Copyright (C) 2018 The R Foundation for Statistical Computing
@@ -47,14 +58,37 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 'help.start()' for an HTML browser interface to help.
 Type 'q()' to quit R.
 
-> library(future)
+> y <- sapply(1:3, FUN = function(x) sqrt(x))
+> y
+[1] 1.000000 1.414214 1.732051
+
+> library(parallel)
+> y <- mclapply(1:3, FUN = function(x) sqrt(x))
+> y <- Reduce(c, y)
+> y
+[1] 1.000000 1.414214 1.732051
+
+> cl <- makeCluster(future::availableCores())
+> y <- parSapply(cl, X = 1:3, FUN = function(x) sqrt(x))
+> y
+[1] 1.000000 1.414214 1.732051
+> stopCluster(cl)
+
+> library(future.apply)
 > plan(multiprocess)
-> Sys.getpid()
-[1] 1
-> f <- future(Sys.getpid())
-> value(f)
-[1] 13
-> 
+> y <- future_sapply(1:3, FUN = function(x) sqrt(x))
+> y
+[1] 1.000000 1.414214 1.732051
+
+> library(foreach)
+> doFuture::registerDoFuture()
+> y <- foreach(x = 1:3, .combine = c) %dopar% sqrt(x)
+> y
+[1] 1.000000 1.414214 1.732051
+
+> quit("no")
+
+$ 
 ```
 
 
