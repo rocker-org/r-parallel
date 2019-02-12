@@ -1,4 +1,4 @@
-# r-base-parallel
+# r-parallel
 
 A Docker container with a base [R] installation together with several parallel/asynchronous R packages pre-installed.  It extends the [rocker/r-base] container.
 
@@ -8,7 +8,7 @@ A Docker container with a base [R] installation together with several parallel/a
 To build the container locally, do:
 
 ```sh
-$ docker build . --tag henrikbengtsson/r-base-parallel
+$ docker build . --tag henrikbengtsson/r-parallel
 Sending build context to Docker daemon  56.32kB
 Step 1/17 : FROM rocker/r-base
 latest: Pulling from rocker/r-base
@@ -26,9 +26,9 @@ $
 To pull it down from Docker Hub, do:
 
 ```sh
-$ docker pull henrikbengtsson/r-base-parallel
+$ docker pull henrikbengtsson/r-parallel
 Using default tag: latest
-latest: Pulling from henrikbengtsson/r-base-parallel
+latest: Pulling from henrikbengtsson/r-parallel
 [...]
 
 $ 
@@ -38,7 +38,7 @@ $
 To launch R in the container, do:
 
 ```sh
-$ docker run -ti henrikbengtsson/r-base-parallel
+$ docker run -ti henrikbengtsson/r-parallel
 
 R version 3.5.1 (2018-07-02) -- "Feather Spray"
 Copyright (C) 2018 The R Foundation for Statistical Computing
