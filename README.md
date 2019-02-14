@@ -1,6 +1,6 @@
 # r-parallel
 
-A Docker container with a base [R] installation together with several parallel/asynchronous R packages pre-installed.  It extends the [rocker/r-base] container.
+A Docker-based Linux container with a base [R] installation together with several parallel/asynchronous R packages pre-installed.  It extends the [rocker/r-base] container.
 
 
 ## Usage
@@ -91,6 +91,41 @@ Type 'q()' to quit R.
 $ 
 ```
 
+To set up cluster of two R workers each running in its own [Docker] container, do:
+
+```r
+> library(parallel)
+> cl <- future::makeClusterPSOCK(rep("localhost", times = 2L), rscript = c(
+    "docker", "run", "--net=host", "henrikbengtsson/r-parallel", "Rscript"
+  ))
+> print(cl)
+socket cluster with 2 nodes on host ‘localhost’
+
+> y <- parSapply(cl, 1:3, function(x) sqrt(x))
+> y
+[1] 1.000000 1.414214 1.732051
+
+> stopCluster(cl)
+```
+
+To do the same using [Singularity], do:
+
+```r
+> library(parallel)
+> cl <- future::makeClusterPSOCK(rep("localhost", times = 2L), rscript = c(
+    "singularity", "exec", "docker://henrikbengtsson/r-parallel", "Rscript"
+  ))
+> print(cl)
+socket cluster with 2 nodes on host ‘localhost’
+
+> y <- parSapply(cl, 1:3, function(x) sqrt(x))
+> y
+[1] 1.000000 1.414214 1.732051
+
+> stopCluster(cl)
+```
 
 [R]: https://www.r-project.org/
+[Docker]: https://www.docker.com/
+[Singularity]: https://www.sylabs.io/singularity/
 [rocker/r-base]: https://hub.docker.com/r/rocker/r-base/
