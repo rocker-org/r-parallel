@@ -1,9 +1,9 @@
 # r-parallel
 
-A Docker-based Linux container with a base [R] installation together with several parallel/asynchronous R packages pre-installed.  It extends the [rocker/r-base] container.
+This is a Docker-based Linux container that consists of the base [R] installation, by extending the [rocker/r-base] container, together with several system libraries and R packages useful for parallel/asynchronous processing.
 
 
-## Usage
+## Build
 
 To build the container locally, do:
 
@@ -35,7 +35,11 @@ $
 ```
 
 
-To launch R in the container, do:
+## Usage
+
+### Standalone
+
+To launch R by itself, do:
 
 ```sh
 $ docker run -ti henrikbengtsson/r-parallel
@@ -91,9 +95,14 @@ Type 'q()' to quit R.
 $ 
 ```
 
-To set up cluster of two R workers each running in its own [Docker] container, do:
+
+### As R Background Workers
+
+To launch a parallel cluster consisting of two R workers that are running in their own [Docker] container, _from the R installation installed on the host system_, do:
 
 ```r
+$ R --quiet
+
 > library(parallel)
 > cl <- future::makeClusterPSOCK(rep("localhost", times = 2L), rscript = c(
     "docker", "run", "--net=host", "henrikbengtsson/r-parallel", "Rscript"
