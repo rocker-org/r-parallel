@@ -8,7 +8,7 @@ This is a Docker-based Linux container that consists of the base [R] installatio
 To build the container locally, do:
 
 ```sh
-$ docker build . --tag henrikbengtsson/r-parallel
+$ docker build . --tag rocker-org/r-parallel
 Sending build context to Docker daemon  56.32kB
 Step 1/17 : FROM rocker/r-base
 latest: Pulling from rocker/r-base
@@ -26,9 +26,9 @@ $
 To pull it down from Docker Hub, do:
 
 ```sh
-$ docker pull henrikbengtsson/r-parallel
+$ docker pull rocker-org/r-parallel
 Using default tag: latest
-latest: Pulling from henrikbengtsson/r-parallel
+latest: Pulling from rocker-org/r-parallel
 [...]
 
 $ 
@@ -42,7 +42,7 @@ $
 To launch R by itself, do:
 
 ```sh
-$ docker run -ti henrikbengtsson/r-parallel
+$ docker run -ti rocker-org/r-parallel
 
 R version 3.5.1 (2018-07-02) -- "Feather Spray"
 Copyright (C) 2018 The R Foundation for Statistical Computing
@@ -105,7 +105,7 @@ $ R --quiet
 
 > library(parallel)
 > cl <- future::makeClusterPSOCK(rep("localhost", times = 2L), rscript = c(
-    "docker", "run", "--net=host", "henrikbengtsson/r-parallel", "Rscript"
+    "docker", "run", "--net=host", "rocker-org/r-parallel", "Rscript"
   ))
 > print(cl)
 socket cluster with 2 nodes on host ‘localhost’
@@ -122,7 +122,7 @@ To do the same using [Singularity], do:
 ```r
 > library(parallel)
 > cl <- future::makeClusterPSOCK(rep("localhost", times = 2L), rscript = c(
-    "singularity", "exec", "docker://henrikbengtsson/r-parallel", "Rscript"
+    "singularity", "exec", "docker://rocker-org/r-parallel", "Rscript"
   ))
 > print(cl)
 socket cluster with 2 nodes on host ‘localhost’

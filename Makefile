@@ -1,4 +1,4 @@
-tag=henrikbengtsson/r-parallel
+tag=rocker-org/r-parallel
 
 build:
 	docker build . --tag $(tag)
