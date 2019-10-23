@@ -44,7 +44,7 @@ To launch R by itself, do:
 ```sh
 $ docker run -ti rocker/r-parallel
 
-R version 3.5.3 (2019-03-11) -- "Great Truth"
+R version 3.6.1 (2019-07-05) -- "Action of the Toes"
 Copyright (C) 2019 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
@@ -86,6 +86,7 @@ Type 'q()' to quit R.
 
 > library(foreach)
 > doFuture::registerDoFuture()
+> plan(multiprocess)
 > y <- foreach(x = 1:3, .combine = c) %dopar% sqrt(x)
 > y
 [1] 1.000000 1.414214 1.732051
@@ -138,3 +139,4 @@ socket cluster with 2 nodes on host ‘localhost’
 [Docker]: https://www.docker.com/
 [Singularity]: https://www.sylabs.io/singularity/
 [rocker/r-base]: https://hub.docker.com/r/rocker/r-base/
+
