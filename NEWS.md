@@ -1,7 +1,7 @@
 rocker/r-parallel
 =================
 
-## Version: 1.0.0-9000 [2019-05-09]
+## Version: 1.0.1 [2019-10-23]
 
 DOCUMENTATION:
 

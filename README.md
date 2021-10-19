@@ -44,7 +44,7 @@ To launch R by itself, do:
 ```sh
 $ docker run -ti rocker/r-parallel
 
-R version 3.5.3 (2019-03-11) -- "Great Truth"
+R version 3.6.1 (2019-07-05) -- "Action of the Toes"
 Copyright (C) 2019 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
