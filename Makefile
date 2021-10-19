@@ -8,3 +8,6 @@ run:
 
 push:
 	docker push $(tag)
+
+login:
+	docker login

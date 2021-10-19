@@ -1,6 +1,14 @@
 rocker/r-parallel
 =================
 
+## Version: 1.1.0 [2021-10-18]
+
+SIGNIFICANT CHANGES:
+
+ * Removed the **future.BatchJobs** package, which has been
+   archived on CRAN.
+ 
+
 ## Version: 1.0.1 [2019-10-23]
 
 DOCUMENTATION:

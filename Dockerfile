@@ -30,6 +30,5 @@ RUN install.r doFuture
 RUN install.r future.callr
 RUN install.r furrr
 
-RUN install.r BatchJobs future.BatchJobs   ## heavy set of dependencies
 RUN install.r batchtools future.batchtools ## heavy set of dependencies
 RUN install.r clustermq                    ## heavy set of dependencies
