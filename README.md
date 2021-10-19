@@ -79,13 +79,14 @@ Type 'q()' to quit R.
 > stopCluster(cl)
 
 > library(future.apply)
-> plan(multiprocess)
+> plan(multisession)
 > y <- future_sapply(1:3, FUN = function(x) sqrt(x))
 > y
 [1] 1.000000 1.414214 1.732051
 
 > library(foreach)
 > doFuture::registerDoFuture()
+> plan(multisession)
 > y <- foreach(x = 1:3, .combine = c) %dopar% sqrt(x)
 > y
 [1] 1.000000 1.414214 1.732051
